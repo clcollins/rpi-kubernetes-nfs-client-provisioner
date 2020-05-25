@@ -4,11 +4,11 @@ Ephemeral containers are useful, but sometimes data needs to persist between con
 
 We can replicate this same behavior in our Private Cloud at Home Kubernetes cluster using the NFS-client provisioner from the [Kubernetes Incubator external storage project](https://github.com/kubernetes-incubator/external-storage).
 
+![Raspberry Pi with a USB hard drive](img/cover.jpg "A Raspberry Pi NFS Server")
+
 In a previous article, we setup an [NFS server with a Raspbery Pi](https://opensource.com/article/20/5/nfs-raspberry-pi). We can use this NFS server to back the storage provided by the NFS-client provisioner. The provisioner runs a container which mounts an NFS export from our NFS server, and carves it up into "volumes" when a persistent volume claim is created, requesting volumes for a pod. [Kubernetes supports NFS volume types natively](https://github.com/kubernetes-incubator/external-storage), and handles mounting the volumes inside the containers when a pod starts.
 
 The NFS-client provisioner gives us the benefit of dynamically provisioned volumes, and makes our homelab cluster behave similar to a Kubernetes cluster in the cloud. In addition, because these are NFS volumes, they can support multi-read/multi-write operations, so multiple pods can have the volumes mounted at the same time. This is useful for load-balanced services like webserver, where multiple pods can be spread across multiple nodes to handle traffic and provide greater availability. NFS volumes can also be created supporting only read/write once operations. This is better for database or other instances where the software writing to the volume does not handle multiple write operations nicely.
-
-![Raspberry Pi with a USB hard drive](img/cover.jpg "A Raspberry Pi NFS Server")
 
 ## Persistent volumes, persistent volume claims, and storage classes
 
