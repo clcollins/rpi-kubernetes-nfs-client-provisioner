@@ -1,3 +1,5 @@
+#This repository is archived and will no longer receive updates.
+
 # Dynamic Persistent Volumes for your Raspberry Pi Kubernetes cluster with the NFS Client Provisioner
 
 Ephemeral containers are useful, but sometimes data needs to persist between containers, or be shared between multiple containers. The solution to this is mounting external volumes inside the containers, and this is done in Kubernetes with persistent volumes. In large, public cloud deployments, Kubernetes has integrations with the cloud providers block storage back ends, allowing developers to create claims for volumes to use with their deployments, and Kubernetes works with the cloud provider to create a volume and mount in the developers' pods.
